@@ -1,0 +1,20 @@
+rest_command:
+  push_all_sensors_data:
+    url: "YOUR_API_BATCH_ENDPOINT"
+    method: POST
+    headers:
+      X-API-Key: "YOUR_API_KEY"
+      Content-Type: "application/json"
+    payload: >
+      [
+        {% for sensor in states.sensor 
+            | selectattr('state', 'is_number') 
+            | list %}
+        {
+          "time": "{{ now().utcnow().isoformat() }}Z",
+          "ship_id": "{{ sensor.entity_id.split('.')[1].replace('_', ' ').title() }}",
+          "cargo_id": "{{ sensor.attributes.friendly_name | default(sensor.entity_id.split('.')[-1].replace('_', ' ').title()) }}",
+          "value": {{ sensor.state }}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
