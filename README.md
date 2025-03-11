@@ -68,4 +68,4 @@ rest_command:
   ```
 ---
 **Step 3: Save & Restart**
-Save your Yaml file and restart your home home assistant
+Save your Yaml file and restart your home assistant
