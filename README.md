@@ -1,8 +1,3 @@
----
-sidebar_position: 2
-title: Home Assistant
-description: Detailed guide for setting up the Home Assistant integration
----
 
 # Home Assistant Integration
 
